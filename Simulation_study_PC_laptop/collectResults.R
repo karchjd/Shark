@@ -4,7 +4,7 @@
 #first load one workspace, for example, cell 1 of the Design matrix
 #save the number of replications within that cell
 Row <- 1
-load(paste("MyResult", "Row", Row,".Rdata" , sep =""))
+load(file.path("results",paste("MyResult", "Row", Row,".Rdata" , sep ="")))
 K <- nrow(MyResult)
 #Initialize a very large matrix with number of rows = K * TotalCells
 Results_sim <- matrix(NA, ncol = ncol(MyResult), nrow = K*TotalCells)
@@ -12,7 +12,7 @@ Results_sim <- matrix(NA, ncol = ncol(MyResult), nrow = K*TotalCells)
 #Thus loop over the rows of Design
 for (i in 1:TotalCells){
   Row <- i
-  load(paste("MyResult", "Row", Row,".Rdata" , sep =""))
+  load(file.path("results",paste0("MyResult", "Row", Row,".Rdata" , sep ="")))
   Results_sim[(K*(i-1)+1):(i*K), ] <- MyResult
 }
 
