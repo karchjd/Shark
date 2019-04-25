@@ -15,3 +15,5 @@ results$sig[results$`pVal(Method1, Method2)`<0.05] <- TRUE
 
 #merge
 results <- merge(Design,results,by=names(Design),sort=FALSE)
+results <- merge(results,timeResults,by=names(Design),sort=FALSE)
+totalTime <- sum(results$timeNeeded)

@@ -10,10 +10,12 @@ K <- nrow(MyResult)
 Results_sim <- matrix(NA, ncol = ncol(MyResult), nrow = K*TotalCells)
 #Fill in this matrix with the results that you obtained for each cell of the design (= each of the workspaces).
 #Thus loop over the rows of Design
+timeNeeded <- rep(NA,TotalCells)
 for (i in 1:TotalCells){
   Row <- i
   load(file.path("results",paste0("MyResult", "Row", Row,".Rdata" , sep ="")))
   Results_sim[(K*(i-1)+1):(i*K), ] <- MyResult
+  timeNeeded[i] <- attr(MyResult,'time')['elapsed']
 }
 
 #repeate the Design matrix K times
@@ -27,6 +29,8 @@ ResultsSimAll <-as.data.frame(cbind(Results_des, K = Results_K, Results_sim))
 names(ResultsSimAll) <- c(names(Design), "K", "Method1", "Method2")
 head(ResultsSimAll)
 
+#time results
+timeResults <- cbind(Design,timeNeeded)
 save(ResultsSimAll, file = "AllResultsSim.Rdata")
 #Optionally save it as a .sav file
 library(haven)

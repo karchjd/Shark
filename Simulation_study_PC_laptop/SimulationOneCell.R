@@ -5,14 +5,14 @@ MySimulationCell<- function(Design = Design, RowOfDesign = 1, K = 2){
   # K: Total number of replications = number of data sets generated in one cell
   #Create matrix or dataframe to store the results:
   MyResult <- matrix(NA, nrow = K, ncol=2)
+  # Analyze data set with Method_new
+  tmp <- proc.time()
   #create a loop over the replications k = 1 to K:
   for (k in 1:K){
     # Generate data
     # set a random number seed to be able to replicate the result exactly
     set.seed((k + 1000)*RowOfDesign)
     SimDat <- do.call(MyDataGeneration, Design[RowOfDesign,] )
-    # Analyze data set with Method_new
-    tmp <- proc.time()
     MyAnalysisResult1 <- Method_new(SimDat)
     #Analyze data set with Method_old
     MyAnalysisResult2 <- Method_old(SimDat)
@@ -27,6 +27,7 @@ MySimulationCell<- function(Design = Design, RowOfDesign = 1, K = 2){
   }
   #save the time to run the analyses of K data sets in one cell of the design.
   time <- proc.time() - tmp
+  attr(MyResult,'time')<-time
   return(MyResult)
 }
 
