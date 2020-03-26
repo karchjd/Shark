@@ -1,11 +1,12 @@
 #Preparation of the analysis
 ### Initialize the factors of your design:
-samp <- c(10, 20, 40, 80)
+samp1 <- c(10, 20, 40, 80)
+samp2 <- c(10, 20, 40, 80)
 es <- c(0.2, 0.5, 0.8)
 ##And create the simulation design matrix (full factorial)
 # Design is a data.frame with all possible combinations of the factor levels
 # Each row of the design matrix represents a cell of your simulation design
-Design <- expand.grid(samp = samp, es = es)
+Design <- expand.grid(samp1 = samp1, samp2 = samp2, es = es)
 ###Preparation of the analysis:
 # If you use R packages that are not standard:
 # Install the relevant R packages, for example:
