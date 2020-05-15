@@ -2,7 +2,7 @@
 ### Initialize the factors of your design:
 samp1 <- c(10, 20, 40, 80)
 samp2 <- c(10, 20, 40, 80)
-es <- c(0.2, 0.5, 0.8)
+es <- c(0, 0.2, 0.5, 0.8)
 ##And create the simulation design matrix (full factorial)
 # Design is a data.frame with all possible combinations of the factor levels
 # Each row of the design matrix represents a cell of your simulation design
